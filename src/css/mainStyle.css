@@ -1,0 +1,11 @@
+.span-empty {
+    display: flex;
+}
+
+.div-main {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    grid-area: main;
+    width: 100%;
+}

@@ -1,0 +1,6 @@
+#root {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas: "input" "main";
+    height: 96vh;
+}

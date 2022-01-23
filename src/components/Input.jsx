@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-
+import '../css/inputStyle.css'
 
 export default class Input extends Component {
     render() {

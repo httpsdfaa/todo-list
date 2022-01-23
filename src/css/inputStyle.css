@@ -1,0 +1,44 @@
+.div-input {
+    grid-area: input;
+    align-self: center;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgb(184, 184, 184);
+    box-shadow: 1px 1px 2px 0 rgb(170, 170, 170);
+    border-radius: 5px;
+}
+
+textarea:focus, input:focus {
+    box-shadow: 0 0 1px 1px rgb(48, 143, 231);
+    outline: 1px;
+    border: 1px solid rgb(48, 143, 231);
+}
+
+#form-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#form-input > label {
+    display: flex;
+    justify-content: center;
+}
+
+#form-input > label > input {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#form-input > label > #list-item {
+    width: 60%;
+}
+
+#form-input > label > #btn-list-item:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border: 1px solid rgb(230, 230, 230);;
+}
