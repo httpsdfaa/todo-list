@@ -1,20 +1,41 @@
-import React, { Component } from 'react'
-
+import React from 'react'
 import '../css/inputStyle.css'
 
-export default class Input extends Component {
-    render() {
-        const {nameInput} = this
-        const {nameBtn} = this.props
-        return (
-            <form action="#" id="form-input">
-                <label for="list-item">
-                    <input type="text" id="list-item" name="list-item" placeholder="Crie item..." value={nameInput}/>
+
+
+function Input() {
+
+    const [nameInput, setNameInput] = React.useState('')
+    const [update, setUpdate] = React.useState('Vazio')
+
+
+    const onSubmit = (e) => { //    Evento Submit. Porem é uma funcao para transformar em JSON
+        e.preventDefault()
+        
+        setUpdate(<span className="span-empty">{nameInput}</span>)
+      
+    }   
+
+
+    return (
+
+        <React.Fragment>
+            <form action="#" id="form-input" onSubmit={onSubmit}>
+                <label htmlFor='list-item'>
+                    <input type="text" id="list-item" name="list-item" placeholder="Crie item..."
+                        value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
                 </label>
-                <label for="btn-list-item">
-                    <input type="button" id="btn-list-item" name="btn-list-item" value={nameBtn}></input>
+                <label htmlFor="btn-list-item">
+                    <input type="submit" id="btn-list-item" name="btn-list-item"
+                        value='Enviar' ></input>
                 </label>
             </form>
-        )
-    }
+            <div className='div-spanEmpty'>
+                {update}
+            </div>
+        </React.Fragment>
+    )
+
 }
+
+export default Input
