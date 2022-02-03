@@ -3,7 +3,7 @@ import React from 'react';
 
 
 //  Components
-import Input from './components/Input';
+import TodoApp from './components/Input';
 
 //  Folha de estilos
 import './css/style.css'; // Folha principal do corpo
@@ -17,7 +17,7 @@ function App() {
     return (
         <React.Fragment>
             <div className="div-input">
-                <Input nome="" />
+                <TodoApp />
             </div>
         </React.Fragment>
     );

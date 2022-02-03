@@ -3,39 +3,75 @@ import '../css/inputStyle.css'
 
 
 
-function Input() {
+export default class TodoApp extends React.Component {
 
-    const [nameInput, setNameInput] = React.useState('')
-    const [update, setUpdate] = React.useState('Vazio')
-
-
-    const onSubmit = (e) => { //    Evento Submit. Porem é uma funcao para transformar em JSON
-        e.preventDefault()
-        
-        setUpdate(<span className="span-empty">{nameInput}</span>)
-      
-    }   
+    constructor(props) {  //  USADO PARA INICIALIZAR O ESTADO DE UM OBJETO. CHAMADO ANTES QUE O COMPONENTE SEJA MONTADO.
+        super(props);   // PRECISA SER CHAMADO PARA NÃO DÁ BUG EM THIS.PROPS
+        this.state = { items: [], text: '' }; //    ITEMS COM ARRAY E TEXT COMO STRING // Este é o meu padra zerado.
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)    // USADO COMO SUBMIT EM MEU FORM
+    }
 
 
-    return (
+    render() {
 
-        <React.Fragment>
-            <form action="#" id="form-input" onSubmit={onSubmit}>
-                <label htmlFor='list-item'>
-                    <input type="text" id="list-item" name="list-item" placeholder="Crie item..."
-                        value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
-                </label>
-                <label htmlFor="btn-list-item">
-                    <input type="submit" id="btn-list-item" name="btn-list-item"
-                        value='Enviar' ></input>
-                </label>
-            </form>
-            <div className='div-spanEmpty'>
-                {update}
-            </div>
-        </React.Fragment>
-    )
+        console.log(this.state.items)
+        return (
+
+            <React.Fragment>
+                <TodoList items={this.state.items} />
+                <form onSubmit={this.handleSubmit} >
+                    <label htmlFor="new-todo">
+                        Crie sua lista
+                    </label>
+                    <input id="new-todo"
+                        onChange={this.handleChange}
+                        value={this.state.text}
+                    />
+                    <button>
+                        Adicionar {this.state.items.length} 
+                    </button>
+
+                </form>
+            </React.Fragment>
+        )
+    }
+
+    handleChange(e) {
+        this.setState({ text: e.target.value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const newItem = {
+            text: this.state.text,
+            id: Date.now()
+        }
+
+        this.setState(state => ({
+            items: state.items.concat(newItem), 
+            text: ''
+        }))
+
+    }
+
 
 }
 
-export default Input
+
+class TodoList extends React.Component {
+
+
+    render() {
+        return (
+            <ul>
+                {this.props.items.map(item => (
+                    <li key={item.id}>{item.text}</li>
+                ))}
+            </ul>
+        )
+    }
+
+
+}
