@@ -69,6 +69,7 @@ export default class TodoApp extends React.Component {
                             value={this.state.text}
                             onMouseOver={mouseOverInput}
                             onMouseOut={mouseOutInput}
+                            maxLength='26'
                         />
                         <button onMouseOver={onMouseOver} onMouseOut={onMouseOut}
                             onMouseDown={onMouseDown} onMouseUp={onMouseUp} >
