@@ -2,8 +2,8 @@ import React from 'react'
 import '../css/inputStyle.css'
 
 
-
 export default class TodoApp extends React.Component {
+
 
     constructor(props) {  //  USADO PARA INICIALIZAR O ESTADO DE UM OBJETO. CHAMADO ANTES QUE O COMPONENTE SEJA MONTADO.
         super(props);   // PRECISA SER CHAMADO PARA NÃO DÁ BUG EM THIS.PROPS
@@ -13,29 +13,76 @@ export default class TodoApp extends React.Component {
     }
 
 
+
+
     render() {
 
-        console.log(this.state.items)
+        const borderSimpli = {
+            boxShadow: '1px 0 2px 0 rgba(170, 170, 170,0.5)',
+            border: '1px solid rgb(210, 210, 210)'
+        }
+
+        //  EVENTOS DOM
+
+        const onMouseOver = (e) => {    //  BUTTON
+            e.target.style.boxShadow = borderSimpli.boxShadow
+            e.target.style.border = borderSimpli.border
+        }
+
+        const mouseOverInput = (e) => {
+            e.target.style.boxShadow = 'none'
+            e.target.style.border = borderSimpli.border
+            e.target.style.background = 'rgb(250, 250, 250)'
+        }
+
+        const mouseOutInput = (e) => {
+            e.target.style.boxShadow = ''
+            e.target.style.border = ''
+            e.target.style.background = ''
+        }
+
+        const onMouseOut = (e) => {     //  BUTTON
+            e.target.style.boxShadow = ''
+            e.target.style.border = ''
+        }
+
+        const onMouseDown = (e) => {    //  BUTTON
+            e.target.style.boxShadow = ''
+            e.target.style.border = ''
+        }
+
+        const onMouseUp = (e) => {    //  BUTTON
+            e.target.style.boxShadow = borderSimpli.boxShadow
+            e.target.style.border = borderSimpli.border
+        }
+
+
         return (
 
+
             <React.Fragment>
-                <TodoList items={this.state.items} />
-                <form onSubmit={this.handleSubmit} >
-                    <label htmlFor="new-todo">
-                        Crie sua lista
-                    </label>
-                    <input id="new-todo"
-                        onChange={this.handleChange}
-                        value={this.state.text}
-                    />
-                    <button>
-                        Adicionar {this.state.items.length} 
-                    </button>
+                <h1>Lista de Tarefas</h1>
+                <form id="form-new-todo" onSubmit={this.handleSubmit} >
+                    <div id="div-btn-input">
+                        <input id="new-todo"
+                            onChange={this.handleChange}
+                            value={this.state.text}
+                            onMouseOver={mouseOverInput}
+                            onMouseOut={mouseOutInput}
+                        />
+                        <button onMouseOver={onMouseOver} onMouseOut={onMouseOut}
+                            onMouseDown={onMouseDown} onMouseUp={onMouseUp} >
+                            Criar
+                        </button>
+                    </div>
 
                 </form>
+                <TodoList items={this.state.items} />
+
             </React.Fragment>
         )
     }
+
 
     handleChange(e) {
         this.setState({ text: e.target.value });
@@ -50,9 +97,10 @@ export default class TodoApp extends React.Component {
         }
 
         this.setState(state => ({
-            items: state.items.concat(newItem), 
+            items: state.items.concat(newItem),
             text: ''
         }))
+
 
     }
 
@@ -60,12 +108,13 @@ export default class TodoApp extends React.Component {
 }
 
 
+
 class TodoList extends React.Component {
 
 
     render() {
         return (
-            <ul>
+            <ul id='ul-list'>
                 {this.props.items.map(item => (
                     <li key={item.id}>{item.text}</li>
                 ))}

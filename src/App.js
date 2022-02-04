@@ -7,7 +7,6 @@ import TodoApp from './components/Input';
 
 //  Folha de estilos
 import './css/style.css'; // Folha principal do corpo
-import './css/inputStyle.css';
 
 
 
