@@ -15,6 +15,7 @@ input {
     height: 30px;
     width: 100%;
     margin-bottom: 10px;
+    padding: 0 15px 0 15px;
 }
 
 input:focus{
@@ -57,4 +58,5 @@ input:focus{
     box-shadow: 0 0 2px 0 rgba(5, 142, 206, 0.2);
     padding: 7px 0 7px 15px ;
     margin-bottom: 10px;
+    font-weight: bold;
 }
